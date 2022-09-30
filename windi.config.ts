@@ -6,9 +6,9 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        red: "#F00",
-        green: "#0F0",
-        blue: "#00F",
+        red: { DEFAULT: "#F00" },
+        green: { DEFAULT: "#0F0" },
+        blue: { DEFAULT: "#00F" },
         teal: {
           100: "#096",
         },
