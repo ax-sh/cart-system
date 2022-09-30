@@ -1,22 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+export type ICartItem = {
+  id: number;
+  name?: string;
+  data: string;
+};
+
 export interface CartState {
   value: number;
-  items: any[];
+  cartItems: ICartItem[];
 }
 
 const initialState: CartState = {
   value: 0,
-  items: [],
+  cartItems: [] as ICartItem[],
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<any>) {
-      state.items.push(action.payload);
+    addToCart(state, action: PayloadAction<string>) {
+      state.cartItems.push({
+        id: state.cartItems.length,
+        data: action.payload,
+      });
+    },
+    removeFromCart(state, { payload }: PayloadAction<number>) {
+      state.cartItems = state.cartItems.filter((i) => i.id !== payload);
     },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -35,7 +47,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, addToCart } =
-  cartSlice.actions;
+export const { removeFromCart, addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

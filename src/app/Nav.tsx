@@ -6,7 +6,7 @@ import { RootState } from "./store";
 import { Link, NavLink } from "react-router-dom";
 
 function CartIcon() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const cartItemsCount = cartItems.length;
   return (
     <NavLink to={"/cart"} className={"h-full relative w-10"}>
