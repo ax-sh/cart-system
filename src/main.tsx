@@ -12,7 +12,16 @@ import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 
 import routes from "~react-pages";
 
-console.log(routes);
+if (process.env.NODE_ENV === "development") {
+  async function startMock() {
+    const { worker } = await import("./mocks/browser");
+    await worker.start();
+  }
+  startMock();
+
+  // worker.start();
+}
+
 const App = () => {
   return <Suspense fallback={<p>Loading...</p>}>{useRoutes(routes)}</Suspense>;
 };
