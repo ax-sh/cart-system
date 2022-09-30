@@ -25,7 +25,9 @@ function CartIcon() {
           "text-white bg-red",
           "rounded-full",
           "border-1 border-white dark:border-gray-900",
-          maxCartItemsLength ? "text-[0.5rem]" : "text-xs"
+          maxCartItemsLength ? "text-[0.5rem]" : "text-xs",
+          isUpdating && "animate-bounce"
+          // isUpdating && "animate-pulse "
         )}
       >
         {isUpdating ? "i" : cartItemsCount}
