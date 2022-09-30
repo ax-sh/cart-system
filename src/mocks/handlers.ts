@@ -4,7 +4,7 @@ import { rest } from "msw";
 const cartMockApi = rest.post("/api/cart/", (req, res, ctx) => {
   console.log(req);
   return res(
-    ctx.delay(2000),
+    ctx.delay(1000),
     // ctx.status(500),
     ctx.status(200),
     // ctx.status(300),
