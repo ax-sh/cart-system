@@ -2,6 +2,7 @@ import React from "react";
 import "./App.scss";
 
 import { Nav } from "./Nav";
+import Cart from "./features/Cart";
 
 function Footer() {
   return <footer></footer>;
@@ -18,7 +19,11 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
 }
 
 function App() {
-  return <Layout>Cart system</Layout>;
+  return (
+    <Layout>
+      <Cart />
+    </Layout>
+  );
 }
 
 export default App;

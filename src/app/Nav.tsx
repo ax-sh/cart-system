@@ -1,9 +1,12 @@
 import React from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 function CartIcon(props: React.ComponentPropsWithoutRef<"button">) {
-  const cartItemsCount = 60;
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItemsCount = cartItems.length;
   return (
     <button className={"relative"} {...props}>
       <ShoppingCartIcon color={"#fff"} height={"100%"} />
