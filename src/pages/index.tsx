@@ -3,6 +3,12 @@ import ProductView from "../app/features/ProductsView";
 import { addToCart } from "../app/features/Cart/cart.slice";
 import { useDispatch } from "react-redux";
 import { useAddToCartMutation } from "../app/features/Cart/cart.api";
+import {
+  Toast,
+  ToastAction,
+  ToastDescription,
+  ToastTitle,
+} from "../app/features/Toast";
 
 function Hero() {
   const dispatch = useDispatch();
@@ -41,6 +47,24 @@ function Page() {
     <Layout>
       <Hero />
       <ProductView />
+      <Toast
+        open={true}
+        // onOpenChange={}
+      >
+        <ToastTitle>Scheduled: Catch up</ToastTitle>
+        <ToastDescription asChild>
+          Hello
+          {/*<time dateTime={eventDateRef.current.toISOString()}>*/}
+          {/*  {prettyDate(eventDateRef.current)}*/}
+          {/*</time>*/}
+        </ToastDescription>
+        <ToastAction asChild altText="Goto schedule to undo">
+          Yoooo
+          {/*<Button variant="green" size="small">*/}
+          {/*  Undo*/}
+          {/*</Button>*/}
+        </ToastAction>
+      </Toast>
     </Layout>
   );
 }
