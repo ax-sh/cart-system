@@ -10,17 +10,21 @@ function CartIcon() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const maxCartItemsLength = cartItems.length > 99;
   const cartItemsCount = maxCartItemsLength ? "99+" : cartItems.length;
-  const [apiAddToCart, { isLoading: isUpdating }] = useAddToCartMutation({
+  const [, { isLoading: isUpdating }] = useAddToCartMutation({
     fixedCacheKey: "shared-update-post",
   });
 
   return (
     <NavLink to={"/cart"} className={"h-full relative w-10"}>
       <ShoppingCartIcon color={"#fff"} height={"100%"} />
+      {/*<span className="flex h-3 w-3">*/}
+      {/*  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>*/}
+      {/*  <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>*/}
+      {/*</span>*/}
 
       <div
         className={clsx(
-          "inline-flex absolute -top-2 -right-2 justify-center items-center w-6 h-6 bg-red-600",
+          "inline-flex absolute -top-2 -right-2 justify-center items-center w-6 h-6 bg-[#e90b0b]",
           "font-bold",
           "text-white bg-red",
           "rounded-full",
