@@ -1,9 +1,10 @@
 import { Layout } from "../app/App";
+import Cart from "../app/features/Cart";
 
 function CartPage() {
   return (
     <Layout>
-      <div className={"container mx-auto"}>Cart Page</div>
+      <Cart />
     </Layout>
   );
 }
