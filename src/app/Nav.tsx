@@ -28,8 +28,11 @@ function CartIcon(props: React.ComponentPropsWithoutRef<"button">) {
 
 export function Nav() {
   return (
-    <nav className={"h-[10vh] overflow-hidden flex justify-end p-6 shadow-xl"}>
-      <CartIcon />
+    <nav className={"h-[10vh] overflow-hidden flex items-center p-6 shadow-xl"}>
+      <div className={"container mx-auto flex justify-between"}>
+        <strong className={"text-3xl"}>Cart System</strong>
+        <CartIcon />
+      </div>
     </nav>
   );
 }

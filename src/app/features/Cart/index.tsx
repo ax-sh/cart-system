@@ -5,7 +5,7 @@ import { addToCart } from "./cart.slice";
 function Cart() {
   const dispatch = useDispatch();
   return (
-    <section>
+    <section className={"container mx-auto"}>
       Cart
       <button onClick={() => dispatch(addToCart("qw"))}>add to cart</button>
     </section>
