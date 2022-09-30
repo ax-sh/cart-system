@@ -1,5 +1,5 @@
-import { Layout } from "../app/App";
-import Cart from "../app/features/Cart";
+import { Layout } from "../../app/App";
+import Cart from "../../app/features/Cart";
 
 function CartPage() {
   return (

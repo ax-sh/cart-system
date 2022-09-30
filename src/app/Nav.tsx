@@ -19,7 +19,7 @@ function CartIcon() {
           "font-bold",
           "text-white bg-red",
           "rounded-full",
-          "border-2 border-white dark:border-gray-900",
+          "border-1 border-white dark:border-gray-900",
           maxCartItemsLength ? "text-[0.5rem]" : "text-xs"
         )}
       >
