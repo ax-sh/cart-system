@@ -8,7 +8,7 @@ function Footer() {
   return <footer></footer>;
 }
 
-function Layout({ children }: React.PropsWithChildren<{}>) {
+export function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
     <>
       <Nav />
@@ -17,13 +17,3 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
     </>
   );
 }
-
-function App() {
-  return (
-    <Layout>
-      <Cart />
-    </Layout>
-  );
-}
-
-export default App;

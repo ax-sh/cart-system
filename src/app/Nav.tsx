@@ -3,26 +3,29 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import { Link, NavLink } from "react-router-dom";
 
 function CartIcon(props: React.ComponentPropsWithoutRef<"button">) {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartItemsCount = cartItems.length;
   return (
-    <button className={"relative"} {...props}>
-      <ShoppingCartIcon color={"#fff"} height={"100%"} />
+    <NavLink to={"/cart"}>
+      <button className={"relative"} {...props}>
+        <ShoppingCartIcon color={"#fff"} height={"100%"} />
 
-      <div
-        className={clsx(
-          "inline-flex absolute -top-2 -right-2 justify-center items-center w-6 h-6",
-          "text-xs font-bold",
-          "text-white bg-red",
-          "rounded-full",
-          "border-2 border-white dark:border-gray-900"
-        )}
-      >
-        {cartItemsCount}
-      </div>
-    </button>
+        <div
+          className={clsx(
+            "inline-flex absolute -top-2 -right-2 justify-center items-center w-6 h-6",
+            "text-xs font-bold",
+            "text-white bg-red",
+            "rounded-full",
+            "border-2 border-white dark:border-gray-900"
+          )}
+        >
+          {cartItemsCount}
+        </div>
+      </button>
+    </NavLink>
   );
 }
 
