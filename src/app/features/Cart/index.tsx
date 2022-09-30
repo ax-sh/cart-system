@@ -11,6 +11,19 @@ function Delete(props: { onClick: () => any }) {
   );
 }
 
+function CartItem(props: { onClick: () => any; item: any }) {
+  return (
+    <div className={"h-20 rounded-md border-2 border-white p-2"}>
+      <div className={"flex justify-end"}>
+        <Delete onClick={props.onClick} />
+      </div>
+      <div className={"px-5 text-xl"}>
+        {props.item.name} {props.item.id}
+      </div>
+    </div>
+  );
+}
+
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -19,17 +32,11 @@ function Cart() {
       <div className={"grid grid-cols-3 gap-5"}>
         {cartItems.map((item, index) => {
           return (
-            <div
+            <CartItem
               key={index}
-              className={"h-20 rounded-md border-2 border-white p-2"}
-            >
-              <div className={"flex justify-end"}>
-                <Delete onClick={() => dispatch(removeFromCart(item.id))} />
-              </div>
-              <div className={"px-5 text-xl"}>
-                {item.name} {item.id}
-              </div>
-            </div>
+              onClick={() => dispatch(removeFromCart(item.id))}
+              item={item}
+            />
           );
         })}
       </div>
