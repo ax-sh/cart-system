@@ -12,15 +12,14 @@ export const cartApi = createApi({
       query: () => "cart",
     }),
     getCartItem: builder.query<CartItem, number>({
-      query: (photoId: number) => `photos/${photoId}`,
+      query: (cartItemId: number) => `cart/${cartItemId}`,
     }),
     addToCart: builder.mutation<CartItem, { data: any }>({
       query: ({ data }) => {
-        console.log(888, data);
         return {
           url: `cart/`,
           method: "POST",
-          body: "data",
+          body: data,
         };
       },
     }),
