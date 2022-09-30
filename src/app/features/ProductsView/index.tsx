@@ -11,12 +11,11 @@ function generateProduct() {
 
 const ProductItem = ({ name, image }: any) => {
   const [enlarge, setEnlarge] = React.useState(false);
-  console.log(enlarge);
 
   return (
     <div
       className={clsx(
-        " bg-white/6 rounded-md shadow-xl overflow-hidden transition-all",
+        "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all",
         enlarge
           ? "h-screen fixed top-0 grid place-items-center z-10"
           : "relative h-90"
