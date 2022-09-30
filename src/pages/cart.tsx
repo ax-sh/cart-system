@@ -1,6 +1,10 @@
 import { Layout } from "../app/App";
 
 function CartPage() {
-  return <Layout>Cart Page</Layout>;
+  return (
+    <Layout>
+      <div className={"container mx-auto"}>Cart Page</div>
+    </Layout>
+  );
 }
 export default CartPage;
