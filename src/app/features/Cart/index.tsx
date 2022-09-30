@@ -30,6 +30,7 @@ function Cart() {
   return (
     <section className={"container mx-auto "}>
       <div className={"grid grid-cols-3 gap-5"}>
+        {!cartItems.length && "empty"}
         {cartItems.map((item, index) => {
           return (
             <CartItem
