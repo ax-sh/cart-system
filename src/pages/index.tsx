@@ -6,7 +6,9 @@ import { useAddToCartMutation } from "../app/features/Cart/cart.api";
 
 function Hero() {
   // const dispatch = useDispatch();
-  const [apiAddToCart] = useAddToCartMutation();
+  const [apiAddToCart] = useAddToCartMutation({
+    fixedCacheKey: "shared-update-post",
+  });
   return (
     <section className={"container mx-auto py-50"}>
       <div className={"flex flex-col gap-10 items-start"}>

@@ -4,11 +4,16 @@ import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { Link, NavLink } from "react-router-dom";
+import { useAddToCartMutation } from "./features/Cart/cart.api";
 
 function CartIcon() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const maxCartItemsLength = cartItems.length > 99;
   const cartItemsCount = maxCartItemsLength ? "99+" : cartItems.length;
+  const [apiAddToCart, { isLoading: isUpdating }] = useAddToCartMutation({
+    fixedCacheKey: "shared-update-post",
+  });
+
   return (
     <NavLink to={"/cart"} className={"h-full relative w-10"}>
       <ShoppingCartIcon color={"#fff"} height={"100%"} />
@@ -23,7 +28,7 @@ function CartIcon() {
           maxCartItemsLength ? "text-[0.5rem]" : "text-xs"
         )}
       >
-        {cartItemsCount}
+        {isUpdating ? "i" : cartItemsCount}
       </div>
     </NavLink>
   );
