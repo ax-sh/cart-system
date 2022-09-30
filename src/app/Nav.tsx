@@ -29,6 +29,17 @@ function CartIcon() {
   );
 }
 
+function ProfileImage() {
+  const image = "https://source.unsplash.com/random/300x300";
+  return (
+    <img
+      src={image}
+      alt={"profile"}
+      className={"rounded-full bg-blue border-1 border-white h-10 w-10"}
+    />
+  );
+}
+
 export function Nav({ className }: React.ComponentPropsWithoutRef<"main">) {
   return (
     <nav
@@ -41,7 +52,10 @@ export function Nav({ className }: React.ComponentPropsWithoutRef<"main">) {
         <Link to={"/"} className={"text-3xl no-underline text-white"}>
           Cart System
         </Link>
-        <CartIcon />
+        <div className={"h-full gap-10 flex justify-between"}>
+          <CartIcon />
+          <ProfileImage />
+        </div>
       </div>
     </nav>
   );
