@@ -3,6 +3,14 @@ import { RootState } from "../../store";
 import { removeFromCart } from "./cart.slice";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
+function Delete(props: { onClick: () => any }) {
+  return (
+    <button onClick={props.onClick}>
+      <XMarkIcon className={"h-5 w-5"} />
+    </button>
+  );
+}
+
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -15,9 +23,7 @@ function Cart() {
             className={"h-20 rounded-md border-2 border-white p-2"}
           >
             <div className={"flex justify-end"}>
-              <button onClick={() => dispatch(removeFromCart(item.id))}>
-                <XMarkIcon className={"h-5 w-5"} />
-              </button>
+              <Delete onClick={() => dispatch(removeFromCart(item.id))} />
             </div>
             <div className={"px-5 text-xl"}>
               {item.name} {item.id}
