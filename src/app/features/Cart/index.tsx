@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { removeFromCart } from "./cart.slice";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function Cart() {
           <div key={index}>
             {item.name} {item.id}
             <button onClick={() => dispatch(removeFromCart(item.id))}>
-              Remove Item
+              <XMarkIcon className={"h-5 w-5"} />
             </button>
           </div>
         );
