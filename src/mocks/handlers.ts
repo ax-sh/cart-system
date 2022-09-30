@@ -1,7 +1,12 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
 
+const cartMockApi = rest.post("/api/cart/", (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json({ success: false }));
+});
+
 export const handlers = [
+  cartMockApi,
   rest.post("/login", (req, res, ctx) => {
     // Persist user's authentication in the session
     sessionStorage.setItem("is-authenticated", "true");
