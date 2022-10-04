@@ -28,6 +28,7 @@ function CartItem(props: { onClick: () => any; item: any }) {
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const subTotal = cartItems.reduce((a, c) => a + c.price, 0);
   return (
     <section className={"container mx-auto"}>
       {!cartItems.length && <Empty>Cart Empty</Empty>}
@@ -42,7 +43,8 @@ function Cart() {
           );
         })}
       </div>
-      <div className={"flex justify-end"}>
+      <div className={"flex justify-between"}>
+        <div>Sub Total: {subTotal}</div>
         <button
           className={"border-white border-2 px-12 py-2 rounded-md text-4xl"}
         >

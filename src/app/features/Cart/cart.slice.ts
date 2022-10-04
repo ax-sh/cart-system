@@ -5,6 +5,7 @@ export type ICartItem = {
   id: number;
   name?: string;
   data: string;
+  price: number;
 };
 
 export interface CartState {
@@ -25,6 +26,7 @@ export const cartSlice = createSlice({
       state.cartItems.push({
         id: state.cartItems.length,
         data: action.payload,
+        price: 10,
       });
     },
     removeFromCart(state, { payload }: PayloadAction<number>) {
