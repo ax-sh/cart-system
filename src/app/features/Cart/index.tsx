@@ -3,6 +3,7 @@ import { RootState } from "../../store";
 import { removeFromCart } from "./cart.slice";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Empty from "../Empty";
+import clsx from "clsx";
 
 function Delete(props: { onClick: () => any }) {
   return (
@@ -14,13 +15,22 @@ function Delete(props: { onClick: () => any }) {
 
 function CartItem(props: { onClick: () => any; item: any }) {
   return (
-    <div className={"h-20 rounded-md border-2 border-white p-2"}>
+    <div className={"h-30 rounded-md border-2 border-white p-2"}>
       <div className={"flex justify-end"}>
         <Delete onClick={props.onClick} />
       </div>
       <div className={"px-5 text-xl"}>
         {props.item.name} {props.item.id}
       </div>
+      <strong
+        className={clsx(
+          "flex gap-2",
+          "block before:block before:content-[attr(title)]"
+        )}
+        title={"Price"}
+      >
+        {props.item.price}
+      </strong>
     </div>
   );
 }
