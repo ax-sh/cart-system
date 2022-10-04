@@ -10,11 +10,11 @@ function Footer() {
 
 export function Layout({
   children,
-  fixedNav,
+  fixedNav = true,
 }: React.PropsWithChildren<{ fixedNav?: boolean }>) {
   return (
     <>
-      <Nav className={clsx(fixedNav && "fixed w-full", "h-[10vh]")} />
+      <Nav className={clsx(fixedNav && "fixed w-full", "h-[10vh] z-200")} />
       <main className={clsx(fixedNav && "pt-[10vh]")}>{children}</main>
       <Footer />
     </>
