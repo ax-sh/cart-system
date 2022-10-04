@@ -92,7 +92,11 @@ function ProductView() {
     originalArgs,
     refetch,
     ...e
-  } = useGetProductsQuery(sortBy);
+  } = useGetProductsQuery(sortBy, {
+    pollingInterval: 3000,
+    refetchOnMountOrArgChange: true,
+    skip: false,
+  });
   function handleAddToCart() {
     dispatch(addToCart("qw"));
   }
