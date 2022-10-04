@@ -1,24 +1,23 @@
-import { range } from "../../../utils";
-import { faker } from "@faker-js/faker";
 import React, { useCallback, useRef } from "react";
 import clsx from "clsx";
 import { useClickAway } from "react-use";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { ProductSortBy, useGetProductsQuery } from "./product.api";
 
-function generateProduct() {
-  const name = faker.commerce.product();
-  const image = faker.image.abstract(2000, 2000, true);
-  return { name, image };
+function ViewControlWrapper(props: { onClick: () => any }) {
+  return (
+    <div className={"flex justify-end"}>
+      <button onClick={props.onClick}>
+        <XMarkIcon height={50} />
+      </button>
+    </div>
+  );
 }
 
 function FullScreenProductView({ setEnlarge, image }: any) {
   return (
     <div className={"flex-grow flex flex-col z-20"}>
-      <div className={"flex justify-end"}>
-        <button onClick={() => setEnlarge(false)}>
-          <XMarkIcon height={50} />
-        </button>
-      </div>
+      <ViewControlWrapper onClick={() => setEnlarge(false)} />
       <div className={"grid grid-cols-12 flex-grow px-5 gap-5"}>
         <img className={"col-span-5"} src={image} />
         jj
@@ -79,20 +78,24 @@ const ProductItem = ({ name, image }: any) => {
 const ProductCard = React.memo(ProductItem);
 
 function ProductView() {
+  const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
+  const { data, isLoading } = useGetProductsQuery(sortBy);
+  if (isLoading) return <>loading</>;
+
   return (
     <section
       className={
         "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
       }
     >
-      {range(100).map((i) => {
-        const product = generateProduct();
-        return (
-          <React.Fragment key={i}>
-            <ProductCard name={product.name} image={product.image} />
-          </React.Fragment>
-        );
-      })}
+      {/*{range(100).map((i) => {*/}
+      {/*  const product = generateProduct();*/}
+      {/*  return (*/}
+      {/*    <React.Fragment key={i}>*/}
+      {/*      <ProductCard name={product.name} image={product.image} />*/}
+      {/*    </React.Fragment>*/}
+      {/*  );*/}
+      {/*})}*/}
     </section>
   );
 }
