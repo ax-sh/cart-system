@@ -79,23 +79,26 @@ const ProductCard = React.memo(ProductItem);
 
 function ProductView() {
   const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
-  const { data, isLoading } = useGetProductsQuery(sortBy);
+  const { data, isLoading, isError, error } = useGetProductsQuery(sortBy);
   if (isLoading) return <>loading</>;
+  if (isError) return <pre>{JSON.stringify(error, null, 4)}</pre>;
   console.log(555, data);
   return (
-    <section
-      className={
-        "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
-      }
-    >
-      {/*{data.map((i) => {*/}
-      {/*  const product = generateProduct();*/}
-      {/*  return (*/}
-      {/*    <React.Fragment key={i}>*/}
-      {/*      <ProductCard name={product.name} image={product.image} />*/}
-      {/*    </React.Fragment>*/}
-      {/*  );*/}
-      {/*})}*/}
+    <section>
+      <div
+        className={
+          "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
+        }
+      >
+        {/*{data.map((i) => {*/}
+        {/*  const product = generateProduct();*/}
+        {/*  return (*/}
+        {/*    <React.Fragment key={i}>*/}
+        {/*      <ProductCard name={product.name} image={product.image} />*/}
+        {/*    </React.Fragment>*/}
+        {/*  );*/}
+        {/*})}*/}
+      </div>
     </section>
   );
 }
