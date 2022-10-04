@@ -19,7 +19,7 @@ function FullScreenProductView({ setEnlarge, image }: any) {
     <div className={"flex-grow flex flex-col z-20"}>
       <ViewControlWrapper onClick={() => setEnlarge(false)} />
       <div className={"grid grid-cols-12 flex-grow px-5 gap-5"}>
-        <img className={"col-span-5"} src={image} />
+        <img alt={"product"} className={"col-span-5"} src={image} />
         jj
       </div>
     </div>
@@ -81,14 +81,14 @@ function ProductView() {
   const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
   const { data, isLoading } = useGetProductsQuery(sortBy);
   if (isLoading) return <>loading</>;
-
+  console.log(555, data);
   return (
     <section
       className={
         "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
       }
     >
-      {/*{range(100).map((i) => {*/}
+      {/*{data.map((i) => {*/}
       {/*  const product = generateProduct();*/}
       {/*  return (*/}
       {/*    <React.Fragment key={i}>*/}
