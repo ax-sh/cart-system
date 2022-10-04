@@ -12,8 +12,21 @@ const cartMockApi = rest.post("/api/cart/", (req, res, ctx) => {
   );
 });
 
+const productsMockApi = rest.get("/api/products/", (req, res, ctx) => {
+  const sort_by = req.url.searchParams.get("sort-by");
+  console.log(req, sort_by, 999);
+  return res(
+    // ctx.delay(500),
+    // // ctx.status(500),
+    ctx.status(200),
+    // ctx.status(300),
+    ctx.json(["sort_by", "io"])
+  );
+});
+
 export const handlers = [
   cartMockApi,
+  productsMockApi,
   rest.post("/login", (req, res, ctx) => {
     // Persist user's authentication in the session
     sessionStorage.setItem("is-authenticated", "true");

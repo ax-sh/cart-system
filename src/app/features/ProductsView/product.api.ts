@@ -12,7 +12,7 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], ProductSortBy>({
-      query: (sortBy: ProductSortBy) => `products?sort-by=${sortBy}`,
+      query: (sortBy: ProductSortBy) => `products/?sort-by=${sortBy}`,
     }),
   }),
 });

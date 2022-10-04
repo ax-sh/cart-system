@@ -79,12 +79,18 @@ const ProductCard = React.memo(ProductItem);
 
 function ProductView() {
   const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
-  const { data, isLoading, isError, error } = useGetProductsQuery(sortBy);
+  const { data, isLoading, isError, error, status, originalArgs, ...e } =
+    useGetProductsQuery(sortBy);
   if (isLoading) return <>loading</>;
   if (isError) return <pre>{JSON.stringify(error, null, 4)}</pre>;
-  console.log(555, data);
+  console.log(555, data, originalArgs, e);
   return (
     <section>
+      <div className={"flex justify-end gap-3"}>
+        <button onClick={() => setSortBy("recent")}>recent</button>
+        <button onClick={() => setSortBy("popular")}>popular</button>
+      </div>
+
       <div
         className={
           "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
