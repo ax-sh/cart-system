@@ -26,7 +26,7 @@ function FullScreenProductView({ setEnlarge, image }: any) {
   );
 }
 
-const ProductItem = ({ key, name, image }: any) => {
+const ProductItem = ({ key, name, image, price }: any) => {
   const [enlarge, setEnlarge] = React.useState(false);
   const ref = useRef(null);
   const handler = useCallback(() => {
@@ -45,21 +45,18 @@ const ProductItem = ({ key, name, image }: any) => {
       key={key}
       ref={ref}
       className={clsx(
-        "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all",
-
-        enlarge
-          ? "h-screen fixed top-0 left-0 w-full grid place-items-center z-10"
-          : "relative h-90"
+        "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all"
       )}
     >
       <input className={"hidden"} type={"checkbox"} />
-      {enlarge && (
-        <div className={"absolute h-full w-full z-50 flex"}>
-          <FullScreenProductView setEnlarge={setEnlarge} image={image} />
-        </div>
-      )}
-      <div className={"absolute p-8 shadow-inset-xl"}>
+      {/*{enlarge && (*/}
+      {/*  <div className={"absolute h-full w-full z-50 flex"}>*/}
+      {/*    <FullScreenProductView setEnlarge={setEnlarge} image={image} />*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      <div className={"absolute p-8 shadow-inset-xl z-9"}>
         <h4 className={"text-2xl font-bolder"}>{name}</h4>
+        <h4 className={"text-2xl font-bolder"}>{price}</h4>
       </div>
       <img
         className={clsx(
@@ -115,6 +112,7 @@ function ProductView() {
               key={index}
               name={product.name}
               image={product.image}
+              price={product.price}
             />
           );
         })}
