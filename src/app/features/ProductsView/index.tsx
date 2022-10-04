@@ -45,7 +45,8 @@ const ProductItem = ({ key, name, image, price }: any) => {
       key={key}
       ref={ref}
       className={clsx(
-        "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all"
+        "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all",
+        "hover:scale-2"
       )}
     >
       <input className={"hidden"} type={"checkbox"} />
@@ -57,6 +58,7 @@ const ProductItem = ({ key, name, image, price }: any) => {
       <div className={"absolute p-8 shadow-inset-xl z-9"}>
         <h4 className={"text-2xl font-bolder"}>{name}</h4>
         <h4 className={"text-2xl font-bolder"}>{price}</h4>
+        <button>add to cart</button>
       </div>
       <img
         className={clsx(
@@ -95,17 +97,13 @@ function ProductView() {
   if (isError) return <pre>{JSON.stringify(error, null, 4)}</pre>;
   console.log(555, data, originalArgs, e);
   return (
-    <section>
+    <section className={"container mx-auto "}>
       <div className={"flex justify-end gap-3"}>
         <button onClick={() => setSortBy("recent")}>recent</button>
         <button onClick={() => setSortBy("popular")}>popular</button>
       </div>
 
-      <div
-        className={
-          "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
-        }
-      >
+      <div className={"grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"}>
         {(data || []).map((product, index) => {
           return (
             <ProductCard
