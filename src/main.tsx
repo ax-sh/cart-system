@@ -12,15 +12,15 @@ import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 
 import routes from "~react-pages";
 import { ToastProvider, ToastViewport } from "./app/features/Toast";
-
+import { worker } from "./mocks/browser";
 if (process.env.NODE_ENV === "development") {
-  async function startMock() {
-    const { worker } = await import("./mocks/browser");
-    await worker.start();
-  }
-  startMock();
+  // async function startMock() {
 
-  // worker.start();
+  //   await worker.start();
+  // }
+  // startMock();
+
+  worker.start();
 }
 
 const App = () => {
