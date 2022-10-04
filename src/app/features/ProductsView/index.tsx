@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { useClickAway } from "react-use";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ProductSortBy, useGetProductsQuery } from "./product.api";
+import { addToCart } from "../Cart/cart.slice";
+import { useDispatch } from "react-redux";
 
 function ViewControlWrapper(props: { onClick: () => any }) {
   return (
@@ -20,14 +22,15 @@ function FullScreenProductView({ setEnlarge, image }: any) {
       <ViewControlWrapper onClick={() => setEnlarge(false)} />
       <div className={"grid grid-cols-12 flex-grow px-5 gap-5"}>
         <img alt={"product"} className={"col-span-5"} src={image} />
-        jj
+        wrapper
       </div>
     </div>
   );
 }
 
-const ProductItem = ({ key, name, image, price }: any) => {
+const ProductItem = ({ key, name, image, price, handleAddToCart }: any) => {
   const [enlarge, setEnlarge] = React.useState(false);
+
   const ref = useRef(null);
   const handler = useCallback(() => {
     console.log("OUTSIDE CLICKED");
@@ -58,7 +61,7 @@ const ProductItem = ({ key, name, image, price }: any) => {
       <div className={"absolute p-8 shadow-inset-xl z-9"}>
         <h4 className={"text-2xl font-bolder"}>{name}</h4>
         <h4 className={"text-2xl font-bolder"}>{price}</h4>
-        <button>add to cart</button>
+        <button onClick={handleAddToCart}>add to cart</button>
       </div>
       <img
         className={clsx(
@@ -79,6 +82,7 @@ const ProductCard = React.memo(ProductItem);
 
 function ProductView() {
   const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
+  const dispatch = useDispatch();
   const {
     data,
     isLoading,
@@ -89,6 +93,9 @@ function ProductView() {
     refetch,
     ...e
   } = useGetProductsQuery(sortBy);
+  function handleAddToCart() {
+    dispatch(addToCart("qw"));
+  }
 
   React.useEffect(() => {
     // refetch();
@@ -111,6 +118,7 @@ function ProductView() {
               name={product.name}
               image={product.image}
               price={product.price}
+              handleAddToCart={handleAddToCart}
             />
           );
         })}

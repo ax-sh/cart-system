@@ -30,7 +30,7 @@ function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const subTotal = cartItems.reduce((a, c) => a + c.price, 0);
   return (
-    <section className={"container mx-auto"}>
+    <section className={"container mx-auto flex flex-col gap-6"}>
       {!cartItems.length && <Empty>Cart Empty</Empty>}
       <div className={"grid grid-cols-3 gap-5"}>
         {cartItems.map((item, index) => {
@@ -43,7 +43,7 @@ function Cart() {
           );
         })}
       </div>
-      <div className={"flex justify-between"}>
+      <div className={"flex justify-between items-center"}>
         <div>Sub Total: {subTotal}</div>
         <button
           className={"border-white border-2 px-12 py-2 rounded-md text-4xl"}
