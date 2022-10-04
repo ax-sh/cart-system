@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-type Product = any;
-// console.log(8888,process.env.REACT_APP_API_URL)
+type Product = { id: string; name: string; price: number; image: string };
 
 export type ProductSortBy = "recent" | "popular";
 

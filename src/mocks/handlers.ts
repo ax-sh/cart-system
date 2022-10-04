@@ -1,5 +1,7 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
+import { generateProduct } from "./utils";
+import { range } from "../utils";
 
 const cartMockApi = rest.post("/api/cart/", (req, res, ctx) => {
   console.log(req);
@@ -20,7 +22,7 @@ const productsMockApi = rest.get("/api/products/", (req, res, ctx) => {
     // // ctx.status(500),
     ctx.status(200),
     // ctx.status(300),
-    ctx.json(["sort_by", "io"])
+    ctx.json(range(100).map((i) => generateProduct(i)))
   );
 });
 

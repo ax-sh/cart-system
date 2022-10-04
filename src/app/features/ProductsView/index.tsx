@@ -26,7 +26,7 @@ function FullScreenProductView({ setEnlarge, image }: any) {
   );
 }
 
-const ProductItem = ({ name, image }: any) => {
+const ProductItem = ({ key, name, image }: any) => {
   const [enlarge, setEnlarge] = React.useState(false);
   const ref = useRef(null);
   const handler = useCallback(() => {
@@ -42,6 +42,7 @@ const ProductItem = ({ name, image }: any) => {
 
   return (
     <div
+      key={key}
       ref={ref}
       className={clsx(
         "Product-item bg-white/6 rounded-md shadow-xl overflow-hidden transition-all",
@@ -79,8 +80,20 @@ const ProductCard = React.memo(ProductItem);
 
 function ProductView() {
   const [sortBy, setSortBy] = React.useState<ProductSortBy>("recent");
-  const { data, isLoading, isError, error, status, originalArgs, ...e } =
-    useGetProductsQuery(sortBy);
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    status,
+    originalArgs,
+    refetch,
+    ...e
+  } = useGetProductsQuery(sortBy);
+
+  React.useEffect(() => {
+    // refetch();
+  }, []);
   if (isLoading) return <>loading</>;
   if (isError) return <pre>{JSON.stringify(error, null, 4)}</pre>;
   console.log(555, data, originalArgs, e);
@@ -96,14 +109,15 @@ function ProductView() {
           "container mx-auto grid grid-cols-1 lg:grid-cols-4  md:grid-cols-2 gap-6"
         }
       >
-        {/*{data.map((i) => {*/}
-        {/*  const product = generateProduct();*/}
-        {/*  return (*/}
-        {/*    <React.Fragment key={i}>*/}
-        {/*      <ProductCard name={product.name} image={product.image} />*/}
-        {/*    </React.Fragment>*/}
-        {/*  );*/}
-        {/*})}*/}
+        {(data || []).map((product, index) => {
+          return (
+            <ProductCard
+              key={index}
+              name={product.name}
+              image={product.image}
+            />
+          );
+        })}
       </div>
     </section>
   );
